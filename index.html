@@ -1,205 +1,112 @@
-/* Reset e Variáveis */
-:root {
-    --primary: #ffea00; /* Amarelo Neon */
-    --dark: #111111;
-    --dark-gray: #1f1f1f;
-    --light: #ffffff;
-    --gray: #b3b3b3;
-    --font-main: 'Poppins', sans-serif;
-    --font-display: 'Bebas Neue', cursive;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: var(--font-main);
-    background-color: var(--dark);
-    color: var(--light);
-    line-height: 1.6;
-}
-
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-ul { list-style: none; }
-img { max-width: 100%; display: block; }
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header */
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(17, 17, 17, 0.95);
-    padding: 1rem 0;
-    border-bottom: 1px solid #333;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    letter-spacing: 2px;
-}
-.logo span { color: var(--primary); }
-
-.nav-links { display: flex; gap: 30px; align-items: center; }
-.nav-links a { font-weight: 500; font-size: 0.9rem; text-transform: uppercase; }
-.nav-links a:hover { color: var(--primary); }
-
-.btn-nav {
-    background: var(--primary);
-    color: var(--dark) !important;
-    padding: 8px 20px;
-    border-radius: 4px;
-    font-weight: bold !important;
-}
-.btn-nav:hover { background: #fff; }
-
-.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
-
-/* Hero Section */
-.hero {
-    height: 100vh;
-    background: url('https://images.unsplash.com/photo-1517836357463-d25dfeac5434?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 600px;
-}
-
-.hero h1 {
-    font-family: var(--font-display);
-    font-size: 5rem;
-    line-height: 1;
-    margin-bottom: 20px;
-}
-
-.hero h1 span { color: var(--primary); }
-
-.hero p { font-size: 1.1rem; margin-bottom: 30px; color: var(--gray); }
-
-.cta-group { display: flex; gap: 15px; }
-
-.btn {
-    padding: 12px 30px;
-    border-radius: 4px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.btn-primary { background: var(--primary); color: var(--dark); border: 2px solid var(--primary); }
-.btn-primary:hover { background: transparent; color: var(--primary); }
-
-.btn-outline { border: 2px solid var(--light); color: var(--light); }
-.btn-outline:hover { background: var(--light); color: var(--dark); }
-
-/* Sections General */
-.section { padding: 80px 0; }
-.section-title {
-    text-align: center;
-    font-family: var(--font-display);
-    font-size: 3rem;
-    margin-bottom: 50px;
-}
-
-/* About */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-.about-img img { border-radius: 10px; box-shadow: -10px 10px 0 var(--primary); }
-
-.features-list li { margin: 15px 0; display: flex; align-items: center; gap: 10px; }
-.features-list i { color: var(--primary); }
-
-/* Plans */
-.dark-bg { background: var(--dark-gray); }
-
-.plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.plan-card {
-    background: var(--dark);
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid #333;
-    position: relative;
-    transition: 0.3s;
-}
-
-.plan-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-
-.featured { border: 2px solid var(--primary); }
-.badge {
-    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-    background: var(--primary); color: var(--dark);
-    padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
-}
-
-.price { font-size: 3rem; font-weight: bold; margin: 20px 0; color: var(--primary); }
-.price span { font-size: 1rem; color: var(--gray); font-weight: normal; }
-
-.plan-card ul { margin-bottom: 30px; text-align: left; }
-.plan-card li { margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-.plan-card i { width: 20px; color: var(--gray); }
-.plan-card .fa-times { color: #555; }
-
-.full-width { width: 100%; text-align: center; }
-
-/* Footer */
-footer { background: #000; padding: 50px 0 20px; border-top: 1px solid #333; }
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-.footer-col h3 { color: var(--primary); margin-bottom: 15px; }
-.social a { font-size: 1.5rem; margin-left: 15px; }
-.copyright { text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #222; padding-top: 20px; }
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    .nav-links {
-        position: absolute; top: 70px; left: 0; width: 100%;
-        background: var(--dark); flex-direction: column;
-        padding: 20px; display: none; border-bottom: 1px solid #333;
-    }
-    .nav-links.active { display: flex; }
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITANIUM FIT</title>
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .hero h1 { font-size: 3.5rem; }
-    .about-grid { grid-template-columns: 1fr; }
-    .footer-content { flex-direction: column; text-align: center; }
-}
+    <style>
+        /* CSS EMBUTIDO */
+        :root { --primary: #ffea00; --dark: #111; --gray: #1f1f1f; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: white; line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Bebas Neue'; letter-spacing: 1px; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header { position: fixed; width: 100%; background: rgba(0,0,0,0.9); padding: 15px 0; border-bottom: 1px solid #333; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: bold; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .btn-nav { background: var(--primary); color: black; padding: 5px 15px; border-radius: 4px; font-weight: bold; }
+        
+        /* Hero */
+        .hero { height: 100vh; background: url('https://images.unsplash.com/photo-1534438327276-14e530c8c22f?auto=format&fit=crop&w=1920&q=80') center/cover; position: relative; display: flex; align-items: center; }
+        .overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.9), transparent); }
+        .hero-content { position: relative; z-index: 2; max-width: 600px; }
+        .hero h1 { font-size: 4rem; line-height: 1; margin-bottom: 10px; }
+        .hero h1 span { color: var(--primary); }
+        .btn { padding: 10px 20px; border-radius: 4px; text-transform: uppercase; font-weight: bold; cursor: pointer; display: inline-block; }
+        .btn-primary { background: var(--primary); color: black; border: none; }
+        .btn-outline { border: 1px solid white; color: white; margin-left: 10px; }
+        
+        /* Sections */
+        section { padding: 60px 0; }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { background: var(--gray); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #333; }
+        .card.featured { border: 2px solid var(--primary); transform: scale(1.05); }
+        .price { font-size: 2rem; font-weight: bold; color: var(--primary); margin: 10px 0; }
+        
+        /* Footer */
+        footer { background: black; padding: 20px 0; text-align: center; border-top: 1px solid #333; margin-top: 40px; }
+        
+        /* Mobile */
+        @media(max-width: 768px) {
+            .nav-links { display: none; } 
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">TITANIUM<span>FIT</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato" class="btn-nav">Matricule-se</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <h1>SUA MELHOR VERSÃO<br><span>Começa Agora</span></h1>
+            <p>A melhor estrutura da cidade com equipamentos importados.</p>
+            <br>
+            <a href="#planos" class="btn btn-primary">Ver Planos</a>
+            <a href="#" class="btn btn-outline">Saiba Mais</a>
+        </div>
+    </section>
+
+    <section id="planos" class="container">
+        <h2 style="text-align: center; font-size: 2.5rem;">Nossos Planos</h2>
+        <div class="plans-grid">
+            <div class="card">
+                <h3>Básico</h3>
+                <div class="price">R$ 79</div>
+                <p>Musculação + Avaliação</p>
+                <br>
+                <button class="btn btn-outline" style="border-color:var(--primary); color:var(--primary)">Assinar</button>
+            </div>
+            <div class="card featured">
+                <h3>Pro</h3>
+                <div class="price">R$ 129</div>
+                <p>Musculação + Aulas + Spa</p>
+                <br>
+                <button class="btn btn-primary">Assinar</button>
+            </div>
+            <div class="card">
+                <h3>VIP</h3>
+                <div class="price">R$ 199</div>
+                <p>Acesso Total + Estacionamento</p>
+                <br>
+                <button class="btn btn-outline" style="border-color:var(--primary); color:var(--primary)">Assinar</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Titanium Fit - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

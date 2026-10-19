@@ -1,546 +1,205 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patitas Felizes - O Melhor para seu Amigo</title>
-    <!-- Ícones (FontAwesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fonte (Google Fonts) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+/* Reset e Variáveis */
+:root {
+    --primary: #ffea00; /* Amarelo Neon */
+    --dark: #111111;
+    --dark-gray: #1f1f1f;
+    --light: #ffffff;
+    --gray: #b3b3b3;
+    --font-main: 'Poppins', sans-serif;
+    --font-display: 'Bebas Neue', cursive;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--dark);
+    color: var(--light);
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(17, 17, 17, 0.95);
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+.logo span { color: var(--primary); }
+
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-links a { font-weight: 500; font-size: 0.9rem; text-transform: uppercase; }
+.nav-links a:hover { color: var(--primary); }
+
+.btn-nav {
+    background: var(--primary);
+    color: var(--dark) !important;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: bold !important;
+}
+.btn-nav:hover { background: #fff; }
+
+.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1517836357463-d25dfeac5434?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span { color: var(--primary); }
+
+.hero p { font-size: 1.1rem; margin-bottom: 30px; color: var(--gray); }
+
+.cta-group { display: flex; gap: 15px; }
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-primary { background: var(--primary); color: var(--dark); border: 2px solid var(--primary); }
+.btn-primary:hover { background: transparent; color: var(--primary); }
+
+.btn-outline { border: 2px solid var(--light); color: var(--light); }
+.btn-outline:hover { background: var(--light); color: var(--dark); }
+
+/* Sections General */
+.section { padding: 80px 0; }
+.section-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    margin-bottom: 50px;
+}
+
+/* About */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-img img { border-radius: 10px; box-shadow: -10px 10px 0 var(--primary); }
+
+.features-list li { margin: 15px 0; display: flex; align-items: center; gap: 10px; }
+.features-list i { color: var(--primary); }
+
+/* Plans */
+.dark-bg { background: var(--dark-gray); }
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.plan-card {
+    background: var(--dark);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #333;
+    position: relative;
+    transition: 0.3s;
+}
+
+.plan-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+
+.featured { border: 2px solid var(--primary); }
+.badge {
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    background: var(--primary); color: var(--dark);
+    padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
+}
+
+.price { font-size: 3rem; font-weight: bold; margin: 20px 0; color: var(--primary); }
+.price span { font-size: 1rem; color: var(--gray); font-weight: normal; }
+
+.plan-card ul { margin-bottom: 30px; text-align: left; }
+.plan-card li { margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+.plan-card i { width: 20px; color: var(--gray); }
+.plan-card .fa-times { color: #555; }
+
+.full-width { width: 100%; text-align: center; }
+
+/* Footer */
+footer { background: #000; padding: 50px 0 20px; border-top: 1px solid #333; }
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.footer-col h3 { color: var(--primary); margin-bottom: 15px; }
+.social a { font-size: 1.5rem; margin-left: 15px; }
+.copyright { text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #222; padding-top: 20px; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .nav-links {
+        position: absolute; top: 70px; left: 0; width: 100%;
+        background: var(--dark); flex-direction: column;
+        padding: 20px; display: none; border-bottom: 1px solid #333;
+    }
+    .nav-links.active { display: flex; }
     
-    <style>
-        /* --- CSS GERAL --- */
-        :root {
-            --primary-color: #ff9f1c; /* Laranja vibrante */
-            --secondary-color: #2ec4b6; /* Verde água */
-            --dark-color: #1b1b1b;
-            --light-color: #f4f4f4;
-            --white: #ffffff;
-            --text-color: #333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--light-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- HEADER & NAV --- */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .btn-cta {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: transform 0.3s;
-        }
-
-        .btn-cta:hover {
-            transform: scale(1.05);
-            background-color: #e68a00;
-        }
-
-        /* Menu Mobile Toggle */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1450778869180-41d0649e14e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-hero {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-hero:hover {
-            background-color: #239b8e;
-        }
-
-        /* --- SERVIÇOS --- */
-        .services {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--dark-color);
-            margin-bottom: 50px;
-        }
-
-        .section-title span {
-            color: var(--primary-color);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-card i {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-            color: var(--dark-color);
-        }
-
-        /* --- PRODUTOS --- */
-        .products {
-            background-color: #fff8f0;
-            padding: 80px 0;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: scale(1.02);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .price {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin: 10px 0;
-        }
-
-        .btn-buy {
-            background-color: var(--dark-color);
-            color: var(--white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s;
-        }
-
-        .btn-buy:hover {
-            background-color: var(--primary-color);
-        }
-
-        /* --- SOBRE --- */
-        .about {
-            padding: 80px 0;
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-img img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            box-shadow: 20px 20px 0 var(--secondary-color);
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        /* --- CONTATO / FOOTER --- */
-        footer {
-            background-color: var(--dark-color);
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin-right: 15px;
-            font-size: 1.5rem;
-            color: var(--white);
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .copyright {
-            text-align: center;
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Esconde menu desktop */
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about {
-                flex-direction: column;
-            }
-            
-            .about-img img {
-                box-shadow: 10px 10px 0 var(--secondary-color);
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navegação -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <i class="fas fa-paw"></i> Patitas Felizes
-                </div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#produtos">Produtos</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#contato" class="btn-cta">Agendar</a></li>
-                </ul>
-                <div class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <h1>Cuidado e Carinho<br>para seu Melhor Amigo</h1>
-            <p>Banho, tosa, veterinária e os melhores produtos do mercado. Tudo em um só lugar com quem ama animais.</p>
-            <button class="btn-hero" onclick="window.location.href='#servicos'">Conheça Nossos Serviços</button>
-        </div>
-    </section>
-
-    <!-- Serviços -->
-    <section id="servicos" class="services">
-        <div class="container">
-            <h2 class="section-title">Nossos <span>Serviços</span></h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-bath"></i>
-                    <h3>Banho & Tosa</h3>
-                    <p>Seu pet fica limpo, cheiroso e feliz. Usamos produtos de alta qualidade.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-stethoscope"></i>
-                    <h3>Veterinário</h3>
-                    <p>Consultas, vacinas e exames com profissionais especializados.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-dog"></i>
-                    <h3>Hotelaria</h3>
-                    <p>Vai viajar? Deixe seu amigo conosco em um ambiente seguro e divertido.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-truck"></i>
-                    <h3>Entrega Rápida</h3>
-                    <p>Rações e acessórios entregues na sua casa em tempo recorde.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Produtos -->
-    <section id="produtos" class="products">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Produtos <span>Destacados</span></h2>
-            <div class="products-grid">
-                <!-- Produto 1 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1589924691195-41432c84c161?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ração Premium" class="product-img">
-                    <div class="product-info">
-                        <h3>Ração Premium 10kg</h3>
-                        <p class="price">R$ 189,90</p>
-                        <button class="btn-buy" onclick="alert('Produto adicionado ao carrinho!')">Comprar</button>
-                    </div>
-                </div>
-                <!-- Produto 2 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1576201836106-db17fb85a50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Coleira" class="product-img">
-                    <div class="product-info">
-                        <h3>Coleira Ajustável</h3>
-                        <p class="price">R$ 45,00</p>
-                        <button class="btn-buy" onclick="alert('Produto adicionado ao carrinho!')">Comprar</button>
-                    </div>
-                </div>
-                <!-- Produto 3 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1545249390-6bdfa38604f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Brinquedo" class="product-img">
-                    <div class="product-info">
-                        <h3>Mordedor de Borracha</h3>
-                        <p class="price">R$ 29,90</p>
-                        <button class="btn-buy" onclick="alert('Produto adicionado ao carrinho!')">Comprar</button>
-                    </div>
-                </div>
-                <!-- Produto 4 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1623366302587-b38b1ddaefd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Shampoo" class="product-img">
-                    <div class="product-info">
-                        <h3>Shampoo Neutro</h3>
-                        <p class="price">R$ 35,00</p>
-                        <button class="btn-buy" onclick="alert('Produto adicionado ao carrinho!')">Comprar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sobre Nós -->
-    <section id="sobre" class="container about">
-        <div class="about-img">
-            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cachorros brincando">
-        </div>
-        <div class="about-text">
-            <h2 class="section-title">Quem <span>Somos</span></h2>
-            <p>A Patitas Felizes nasceu do amor incondicional pelos animais. Há mais de 10 anos, cuidamos do seu melhor amigo com a mesma dedicação que daríamos aos nossos próprios pets.</p>
-            <br>
-            <p>Temos uma equipe apaixonada, instalações modernas e muito carinho para oferecer. Venha nos conhecer!</p>
-            <br>
-            <button class="btn-hero">Saiba Mais</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contato">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>Patitas Felizes</h4>
-                    <p>O melhor cuidado para quem faz parte da sua família.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
-                        <li><i class="fas fa-envelope"></i> contato@patitasfelizes.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Rua dos Cães, 123 - SP</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Horários</h4>
-                    <ul>
-                        <li>Seg - Sex: 08:00 - 19:00</li>
-                        <li>Sáb: 09:00 - 17:00</li>
-                        <li>Dom: Fechado</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Siga-nos</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Patitas Felizes. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript Simples -->
-    <script>
-        // Função para abrir/fechar menu mobile
-        function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('active');
-        }
-
-        // Fechar menu ao clicar em um link (mobile)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
-
-        // Efeito suave ao rolar
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+    .hero h1 { font-size: 3.5rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .footer-content { flex-direction: column; text-align: center; }
+}
